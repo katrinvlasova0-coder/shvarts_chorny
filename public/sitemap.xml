@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://shvarts.ru/</loc></url>
   <url><loc>https://shvarts.ru/poetry</loc></url>
+  <url><loc>https://shvarts.ru/poetry/istorii-i-skazki</loc></url>
   <url><loc>https://shvarts.ru/music</loc></url>
   <url><loc>https://shvarts.ru/biography</loc></url>
   <url><loc>https://shvarts.ru/news</loc></url>
   <url><loc>https://shvarts.ru/media</loc></url>
-  <url><loc>https://shvarts.ru/contact</loc></url>
   <url><loc>https://shvarts.ru/favorites</loc></url>
   <url><loc>https://shvarts.ru/search</loc></url>
 </urlset>

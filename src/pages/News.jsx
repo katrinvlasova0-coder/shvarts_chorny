@@ -42,7 +42,7 @@ export default function News() {
           {loading ? <div className="col-span-full h-40 flex items-center justify-center"><div className="w-8 h-8 border-2 border-[#080808]/20 border-t-[#080808] rounded-full animate-spin" /></div> :
             filtered.map(n => (
               <Link key={n.id} to={`/news/${n.slug}`} className="group block">
-                {n.cover && <div className="aspect-[4/3] overflow-hidden mb-4 bg-[#eee]"><img src={n.cover} alt="" className="h-full w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" /></div>}
+                {n.cover && <div className="overflow-hidden mb-4 bg-[#eee]"><img src={n.cover} alt="" className="w-full block grayscale group-hover:grayscale-0 transition-all duration-500" /></div>}
                 <div className="flex items-center gap-3 mb-2">
                   {n.date && <span className="font-ui text-[10px] uppercase tracking-[0.2em] text-[#A9A9A9]">{new Date(n.date).toLocaleDateString('ru-RU')}</span>}
                   {n.categories?.[0] && <span className="font-ui text-[10px] uppercase tracking-[0.2em] text-[#8B0000]">{n.categories[0]}</span>}

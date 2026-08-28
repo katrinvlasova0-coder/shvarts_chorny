@@ -16,6 +16,7 @@ const ENTITIES = [
 
 const SKIP = ['id', 'created_date', 'updated_date', 'created_by_id'];
 const AUDIO_FIELDS = ['audioReading', 'audioFile'];
+const IMAGE_FIELDS = ['publicationLogo', 'image', 'cover', 'coverImage', 'background', 'mobileBackground', 'desktopBackground'];
 
 export default function Admin() {
   const [authed, setAuthed] = useState(false);
@@ -81,7 +82,7 @@ export default function Admin() {
     load();
   };
 
-  const uploadAudio = async (key, file) => {
+  const uploadFile = async (key, file) => {
     if (!file) return;
     setUploadingField(key);
     try {
@@ -221,6 +222,7 @@ export default function Admin() {
                 const val = editing[key] ?? (def.type === 'array' ? '' : def.type === 'boolean' ? false : '');
                 const isLong = def.type === 'string' && (key === 'text' || key === 'body' || key === 'longDescription' || key === 'content' || key === 'lyrics' || key === 'credits' || key === 'description');
                 const isAudio = AUDIO_FIELDS.includes(key);
+                const isImage = IMAGE_FIELDS.includes(key);
                 return (
                   <div key={key} className={(isLong || def.type === 'array' || isAudio) ? 'md:col-span-2' : ''}>
                     <label className="font-ui text-[10px] uppercase tracking-[0.2em] text-[#6B6B6B] block mb-1">{key}</label>
@@ -235,13 +237,13 @@ export default function Admin() {
                     ) : (
                       <input type="text" value={val} onChange={(e) => setEditing({ ...editing, [key]: e.target.value })} className="w-full border border-[rgba(8,8,8,0.15)] px-3 py-2 focus:outline-none focus:border-[#080808]" />
                     )}
-                    {isAudio && (
+                    {(isAudio || isImage) && (
                       <div className="mt-2 flex flex-wrap items-center gap-3">
                         <label className="inline-flex items-center gap-2 bg-[#080808] text-[#FDFCF8] px-4 py-2 font-ui text-[10px] uppercase tracking-[0.2em] hover:bg-[#8B0000] transition-colors cursor-pointer">
                           {uploadingField === key ? <Loader2 size={13} className="animate-spin" /> : <Upload size={13} />}
-                          {uploadingField === key ? 'Загрузка…' : 'Загрузить аудио'}
-                          <input type="file" accept="audio/*" className="hidden"
-                            onChange={(e) => uploadAudio(key, e.target.files?.[0])} />
+                          {uploadingField === key ? 'Загрузка…' : (isImage ? 'Загрузить изображение' : 'Загрузить аудио')}
+                          <input type="file" accept={isImage ? 'image/*' : 'audio/*'} className="hidden"
+                            onChange={(e) => uploadFile(key, e.target.files?.[0])} />
                         </label>
                         {val && <span className="font-ui text-[10px] text-[#A9A9A9] truncate max-w-xs">✓ Файл прикреплён</span>}
                       </div>

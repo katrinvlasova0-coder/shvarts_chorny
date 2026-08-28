@@ -9,7 +9,6 @@ const NAV = [
   { label: 'Биография', to: '/biography' },
   { label: 'Новости', to: '/news' },
   { label: 'СМИ', to: '/media' },
-  { label: 'Контакт', to: '/contact' },
 ];
 
 export default function Navbar() {

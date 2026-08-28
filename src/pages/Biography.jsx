@@ -32,7 +32,7 @@ export default function Biography() {
               <div className="md:col-span-8 space-y-20">
                 {others.map(s => (
                   <section key={s.id}>
-                    <h2 className="font-serif-display text-4xl mb-6">{s.title}</h2>
+                    {s.title && <h2 className="font-serif-display text-4xl mb-6">{s.title}</h2>}
                     {s.content && <div className="font-serif-display text-lg leading-[1.7] whitespace-pre-wrap text-[#2B2B2B]">{s.content}</div>}
                     {s.images?.length > 0 && (
                       <div className="mt-8 grid grid-cols-2 gap-4">

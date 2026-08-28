@@ -8,6 +8,8 @@ import { ChevronLeft } from 'lucide-react';
 export default function NewsDetail() {
   const { slug } = useParams();
   const [item, setItem] = useState(null);
+  const [poems, setPoems] = useState([]);
+  const [albums, setAlbums] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -15,7 +17,16 @@ export default function NewsDetail() {
       setLoading(true);
       try {
         const n = await base44.entities.NewsArticle.filter({ slug });
-        setItem(n?.[0] || null);
+        const it = n?.[0] || null;
+        setItem(it);
+        if (it?.relatedWorks?.length) {
+          const ps = await base44.entities.Poem.filter({ slug: { $in: it.relatedWorks }, status: 'published' });
+          setPoems(ps || []);
+        }
+        if (it?.relatedAlbums?.length) {
+          const al = await base44.entities.MusicAlbum.filter({ slug: { $in: it.relatedAlbums } });
+          setAlbums(al || []);
+        }
       } catch {} finally { setLoading(false); }
     })();
   }, [slug]);
@@ -43,6 +54,26 @@ export default function NewsDetail() {
         {item.gallery?.length > 0 && (
           <div className="mt-10 grid grid-cols-2 gap-4">
             {item.gallery.map((g, i) => <div key={i} className="aspect-square overflow-hidden bg-[#eee]"><img src={g} alt="" className="h-full w-full object-cover grayscale" /></div>)}
+          </div>
+        )}
+        {poems.length > 0 && (
+          <div className="mt-12 flex flex-wrap gap-4">
+            {poems.map(p => (
+              <Link key={p.id} to={`/poetry/${p.category}/${p.slug}`}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#080808] text-[#FDFCF8] font-ui text-[11px] uppercase tracking-[0.2em] hover:bg-[#8B0000] transition-colors">
+                Читать · {p.title}
+              </Link>
+            ))}
+          </div>
+        )}
+        {albums.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-4">
+            {albums.map(a => (
+              <Link key={a.id} to={`/music/album/${a.slug}`}
+                className="inline-flex items-center gap-2 px-6 py-3 border border-[#080808] text-[#080808] font-ui text-[11px] uppercase tracking-[0.2em] hover:bg-[#080808] hover:text-[#FDFCF8] transition-colors">
+                Слушать · {a.title}
+              </Link>
+            ))}
           </div>
         )}
         <div className="mt-12 pt-8 border-t border-[rgba(8,8,8,0.1)]"><ShareButtons title={item.title} /></div>

@@ -22,6 +22,14 @@ export default function Media() {
 
   const filtered = type === 'Все' ? items : items.filter(m => m.type === type);
 
+  const logos = (() => {
+    const seen = new Set(); const out = [];
+    for (const m of items) {
+      if (m.publicationLogo && !seen.has(m.publication)) { seen.add(m.publication); out.push({ publication: m.publication, logo: m.publicationLogo }); }
+    }
+    return out;
+  })();
+
   return (
     <div className="pt-28 md:pt-32 pb-24">
       <SEO title="СМИ — ШВАРЦ ЧÖРНЫЙ" description="Публикации, интервью, рецензии, статьи, радио, телевидение, подкасты." />
@@ -39,6 +47,19 @@ export default function Media() {
           ))}
         </div>
 
+        {!loading && logos.length > 0 && (
+          <div className="mt-12 border-y border-[rgba(8,8,8,0.1)] py-10">
+            <p className="font-ui text-[10px] uppercase tracking-[0.3em] text-[#6B6B6B] mb-8 text-center">Опубликован в изданиях</p>
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+              {logos.map(l => (
+                <div key={l.publication} className="h-12 w-28 flex items-center justify-center opacity-55 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+                  <img src={l.logo} alt={l.publication} className="max-h-full max-w-full object-contain" />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-px bg-[rgba(8,8,8,0.08)]">
           {loading ? <div className="col-span-full h-40 flex items-center justify-center bg-[#FDFCF8]"><div className="w-8 h-8 border-2 border-[#080808]/20 border-t-[#080808] rounded-full animate-spin" /></div> :
             filtered.map(m => {
@@ -46,8 +67,11 @@ export default function Media() {
               const inner = (
                 <>
                   <div className="flex items-start gap-5">
-                    {m.image ? <div className="h-20 w-20 flex-shrink-0 overflow-hidden bg-[#eee]"><img src={m.image} alt="" className="h-full w-full object-cover grayscale" /></div> :
-                      <div className="h-20 w-20 flex-shrink-0 bg-[#080808] flex items-center justify-center font-serif-display text-2xl text-[#C5A059]">{(m.publication || 'СМИ')[0]}</div>}
+                    {(m.publicationLogo || m.image)
+                      ? <div className="h-20 w-20 flex-shrink-0 overflow-hidden bg-[#F4F1E8] flex items-center justify-center p-2">
+                          <img src={m.publicationLogo || m.image} alt="" className="max-h-full max-w-full object-contain grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" />
+                        </div>
+                      : <div className="h-20 w-20 flex-shrink-0 bg-[#080808] flex items-center justify-center font-serif-display text-2xl text-[#C5A059]">{(m.publication || 'СМИ')[0]}</div>}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-3 mb-2">
                         <span className="font-ui text-[11px] uppercase tracking-[0.2em] text-[#080808]">{m.publication}</span>

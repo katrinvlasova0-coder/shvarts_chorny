@@ -164,3 +164,31 @@
 }
 
 ::selection { background: var(--ink); color: var(--paper); }
+
+/* Gold shimmer sweep on hover */
+.gold-shimmer { position: relative; overflow: hidden; }
+.gold-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg,
+    transparent 35%,
+    rgba(197,160,89,0.15) 45%,
+    rgba(197,160,89,0.55) 50%,
+    rgba(197,160,89,0.15) 55%,
+    transparent 65%);
+  background-size: 250% 100%;
+  background-position: 200% 0;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transition: opacity 0.3s;
+}
+.gold-shimmer:hover::after {
+  opacity: 1;
+  animation: shimmerSweep 1.4s ease-in-out;
+}
+@keyframes shimmerSweep {
+  0% { background-position: 200% 0; }
+  100% { background-position: -120% 0; }
+}

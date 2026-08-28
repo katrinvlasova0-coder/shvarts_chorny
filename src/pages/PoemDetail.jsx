@@ -5,6 +5,7 @@ import SEO from '@/components/SEO';
 import ReadingPlayer from '@/components/ReadingPlayer';
 import ShareButtons from '@/components/ShareButtons';
 import AtmosphereBackground from '@/components/AtmosphereBackground';
+import CoverThumbnail from '@/components/CoverThumbnail';
 import { ChevronLeft, ChevronRight, Shuffle, ArrowLeft, Heart, BookOpen } from 'lucide-react';
 import { isFavorite, toggleFavorite } from '@/lib/favorites';
 
@@ -117,8 +118,9 @@ export default function PoemDetail() {
                   style={{ textShadow: '0 1px 12px rgba(0,0,0,0.6)' }}>
                   {poem.text}
                 </article>
-                <div className="mt-6 lg:mt-1 lg:sticky lg:top-28 lg:justify-self-end">
+                <div className="mt-6 lg:mt-1 lg:sticky lg:top-28 lg:justify-self-end flex flex-col items-end gap-6">
                   <ReadingPlayer src={poem.audioReading} title={poem.title} compact />
+                  {poem.coverImage && <CoverThumbnail src={poem.coverImage} alt={poem.title} />}
                 </div>
               </div>
 

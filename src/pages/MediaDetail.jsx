@@ -30,7 +30,12 @@ export default function MediaDetail() {
         <Link to="/media" className="inline-flex items-center gap-2 font-ui text-[11px] uppercase tracking-[0.2em] text-[#6B6B6B] hover:text-[#080808] transition-colors mb-8">
           <ChevronLeft size={14} strokeWidth={1.5} /> Все публикации
         </Link>
-        <div className="flex items-center gap-3 mb-4">
+        <div className="flex items-center gap-4 mb-4 flex-wrap">
+          {item.publicationLogo && (
+            <div className="h-10 w-auto max-w-[120px] flex items-center flex-shrink-0">
+              <img src={item.publicationLogo} alt={item.publication} className="max-h-10 max-w-[120px] object-contain grayscale opacity-80" />
+            </div>
+          )}
           <span className="font-ui text-[11px] uppercase tracking-[0.2em] text-[#080808]">{item.publication}</span>
           {item.type && <span className="font-ui text-[10px] uppercase tracking-[0.15em] text-[#8B0000]">{item.type}</span>}
           {item.date && <span className="font-ui text-[10px] uppercase tracking-[0.2em] text-[#A9A9A9]">{new Date(item.date).toLocaleDateString('ru-RU')}</span>}
