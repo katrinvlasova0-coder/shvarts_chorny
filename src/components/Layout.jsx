@@ -14,10 +14,10 @@ export default function Layout() {
   }, [location.pathname]);
 
   return (
-    <div className="paper-bg min-h-screen flex flex-col">
+    <div className="paper-bg min-h-screen flex flex-col overflow-x-hidden">
       <FilmGrain />
       <Navbar />
-      <main className="flex-1 page-enter" key={location.pathname}>
+      <main className="flex-1 page-enter pb-24" key={location.pathname}>
         <Outlet />
       </main>
       <Footer />

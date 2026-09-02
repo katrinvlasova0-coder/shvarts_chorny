@@ -80,58 +80,63 @@ export default function Home() {
 
   return (
     <>
-      <SEO title="ШВАРЦ ЧÖРНЫЙ — Поэзия • Музыка • Истории"
-        description="Цифровой архив поэта и композитора Шварца Чорного. Стихи, музыка, истории, биография."
-        image={HERO_IMG}
-        jsonLd={{ '@context': 'https://schema.org', '@type': 'Person', name: 'ШВАРЦ ЧÖРНЫЙ',
-          jobTitle: ['Поэт','Композитор','Писатель','Драматург'], url: window.location.href }} />
+      <SEO title="ШВАРЦ ЧÖРНЫЙ — Источник гармонических вибраций"
+        description="Поэт, композитор и автор песен. Цифровой архив: поэзия, музыка, шёпот, истории и биография. Мифы • Апокрифы • Абсурд бытия • Явь снов."
+        image="https://shvarts.ru/og-default.jpg"
+        jsonLd={{ '@context': 'https://schema.org', '@type': 'Person', name: 'Шварц Чорный',
+          alternateName: 'ШВАРЦ ЧÖРНЫЙ',
+          jobTitle: ['Поэт','Композитор','Автор песен','Писатель','Драматург'],
+          description: 'Поэт, композитор и автор песен. Цифровой архив поэзии, музыки, шёпота и историй.',
+          url: 'https://shvarts.ru/', image: 'https://shvarts.ru/og-default.jpg' }} />
 
-      <div className="fixed inset-0 z-0 pointer-events-none"><BackgroundSlideshow variant="light" opacity={0.5} /></div>
-      <div className="relative z-10">
+      {/* Paper backdrop only — avoid fixed slideshow bleeding through stacked sections on mobile */}
+      <div className="relative z-10 bg-[#FDFCF8]">
       {/* HERO */}
-      <section className="relative h-screen min-h-[640px] flex flex-col justify-center overflow-hidden">
+      <section className="relative min-h-[100svh] min-h-screen flex flex-col justify-center overflow-hidden">
         <BackgroundSlideshow variant="dark" opacity={0.85} />
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10 w-full">
-          <p className="font-ui text-[8px] sm:text-[11px] uppercase tracking-[0.25em] sm:tracking-[0.4em] whitespace-nowrap text-[#FDFCF8]/60 mb-6 text-reveal">Мифы • Апокрифы • Абсурд бытия • Явь снов</p>
-          <h1 className="font-serif-display text-[#FDFCF8] text-6xl sm:text-7xl md:text-9xl leading-[0.9] tracking-tight text-reveal" style={{ animationDelay: '0.1s' }}>
+        <div className="relative z-10 max-w-[1400px] mx-auto px-5 sm:px-6 md:px-10 w-full pt-24 pb-20">
+          <p className="font-ui text-[9px] sm:text-[11px] uppercase tracking-[0.18em] sm:tracking-[0.4em] text-[#FDFCF8]/60 mb-5 sm:mb-6 text-reveal leading-relaxed">
+            Мифы • Апокрифы • Абсурд бытия • Явь снов
+          </p>
+          <h1 className="font-serif-display text-[#FDFCF8] text-5xl sm:text-7xl md:text-9xl leading-[0.9] tracking-tight text-reveal" style={{ animationDelay: '0.1s' }}>
             ШВАРЦ<br />ЧÖРНЫЙ
           </h1>
-          <p className="font-serif-display text-xl md:text-2xl font-bold not-italic text-[#FDFCF8] mt-8 text-reveal" style={{ animationDelay: '0.3s' }}>
+          <p className="font-serif-display text-lg sm:text-xl md:text-2xl font-bold not-italic text-[#FDFCF8] mt-6 sm:mt-8 text-reveal" style={{ animationDelay: '0.3s' }}>
             Источник гармонических вибраций
           </p>
-          <p className="font-ui text-[8px] sm:text-[12px] uppercase tracking-[0.15em] sm:tracking-[0.25em] whitespace-nowrap text-[#FDFCF8]/50 mt-3 text-reveal" style={{ animationDelay: '0.4s' }}>
+          <p className="font-ui text-[9px] sm:text-[12px] uppercase tracking-[0.14em] sm:tracking-[0.25em] text-[#FDFCF8]/50 mt-3 text-reveal leading-relaxed" style={{ animationDelay: '0.4s' }}>
             Поэзия • Музыка • Шёпот • Тишина • ASMR
           </p>
         </div>
-        <div className="absolute bottom-8 left-0 right-0 z-10 flex justify-center">
+        <div className="absolute bottom-6 sm:bottom-8 left-0 right-0 z-10 flex justify-center pointer-events-none">
           <div className="animate-bounce font-ui text-[10px] uppercase tracking-[0.3em] text-[#FDFCF8]/40">Листай</div>
         </div>
       </section>
 
       {/* ENTRIES */}
-      <section className="max-w-[1400px] mx-auto px-6 md:px-10 py-24 md:py-32">
+      <section className="relative z-10 bg-[#FDFCF8] max-w-[1400px] mx-auto px-5 sm:px-6 md:px-10 py-16 sm:py-24 md:py-32">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[rgba(8,8,8,0.08)]">
           <Link to="/poetry"
-            className="group gold-shimmer bg-[#FDFCF8] p-6 md:p-8 hover:bg-[#080808] transition-colors duration-500">
+            className="group gold-shimmer bg-[#FDFCF8] p-4 sm:p-6 md:p-8 hover:bg-[#080808] transition-colors duration-500 min-w-0">
             <span className="font-ui text-[9px] uppercase tracking-[0.3em] text-[#A9A9A9] group-hover:text-[#C5A059] transition-colors">I</span>
-            <h2 className="font-serif-display text-3xl md:text-4xl mt-3 text-[#080808] group-hover:text-[#FDFCF8] transition-colors leading-none">Поэзия</h2>
+            <h2 className="font-serif-display text-2xl sm:text-3xl md:text-4xl mt-3 text-[#080808] group-hover:text-[#FDFCF8] transition-colors leading-none">Поэзия</h2>
             <ArrowRight size={16} strokeWidth={1} className="mt-4 text-[#6B6B6B] group-hover:text-[#FDFCF8] transition-colors" />
           </Link>
           <Link to="/music"
-            className="group gold-shimmer bg-[#FDFCF8] p-6 md:p-8 hover:bg-[#080808] transition-colors duration-500">
+            className="group gold-shimmer bg-[#FDFCF8] p-4 sm:p-6 md:p-8 hover:bg-[#080808] transition-colors duration-500 min-w-0">
             <span className="font-ui text-[9px] uppercase tracking-[0.3em] text-[#A9A9A9] group-hover:text-[#C5A059] transition-colors">II</span>
-            <h2 className="font-serif-display text-3xl md:text-4xl mt-3 text-[#080808] group-hover:text-[#FDFCF8] transition-colors leading-none">Музыка</h2>
+            <h2 className="font-serif-display text-2xl sm:text-3xl md:text-4xl mt-3 text-[#080808] group-hover:text-[#FDFCF8] transition-colors leading-none">Музыка</h2>
             <ArrowRight size={16} strokeWidth={1} className="mt-4 text-[#6B6B6B] group-hover:text-[#FDFCF8] transition-colors" />
           </Link>
           <Link to="/poetry/istorii-i-skazki"
-            className="group gold-shimmer bg-[#FDFCF8] p-6 md:p-8 hover:bg-[#080808] transition-colors duration-500">
+            className="group gold-shimmer bg-[#FDFCF8] p-4 sm:p-6 md:p-8 hover:bg-[#080808] transition-colors duration-500 min-w-0">
             <span className="font-ui text-[9px] uppercase tracking-[0.3em] text-[#A9A9A9] group-hover:text-[#C5A059] transition-colors">III</span>
-            <h2 className="font-serif-display text-3xl md:text-4xl mt-3 text-[#080808] group-hover:text-[#FDFCF8] transition-colors leading-none">Шёпот</h2>
+            <h2 className="font-serif-display text-2xl sm:text-3xl md:text-4xl mt-3 text-[#080808] group-hover:text-[#FDFCF8] transition-colors leading-none">Шёпот</h2>
             <ArrowRight size={16} strokeWidth={1} className="mt-4 text-[#6B6B6B] group-hover:text-[#FDFCF8] transition-colors" />
           </Link>
-          <div className="group gold-shimmer bg-[#FDFCF8] p-6 md:p-8 hover:bg-[#080808]/40 transition-colors duration-500">
+          <div className="group gold-shimmer bg-[#FDFCF8] p-4 sm:p-6 md:p-8 hover:bg-[#080808]/40 transition-colors duration-500 min-w-0">
             <span className="font-ui text-[9px] uppercase tracking-[0.3em] text-[#A9A9A9]">IV</span>
-            <h2 className="font-serif-display text-3xl md:text-4xl mt-3 text-[#A9A9A9] leading-none">Тишина</h2>
+            <h2 className="font-serif-display text-2xl sm:text-3xl md:text-4xl mt-3 text-[#A9A9A9] leading-none">Тишина</h2>
             <ArrowRight size={16} strokeWidth={1} className="mt-4 text-[#D9D9D9]" />
           </div>
         </div>
@@ -167,11 +172,11 @@ export default function Home() {
       </section>
 
       {/* FEATURED */}
-      <section className="max-w-[1400px] mx-auto px-6 md:px-10 py-24 md:py-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-          <div>
-            <div className="flex items-baseline justify-between mb-8">
-              <h2 className="font-serif-display text-4xl">Недавние стихи</h2>
+      <section className="relative z-10 bg-[#FDFCF8] max-w-[1400px] mx-auto px-5 sm:px-6 md:px-10 py-16 sm:py-24 md:py-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
+          <div className="min-w-0">
+            <div className="flex items-baseline justify-between gap-4 mb-8">
+              <h2 className="font-serif-display text-3xl sm:text-4xl">Недавние стихи</h2>
               <Link to="/poetry" className="font-ui text-[11px] uppercase tracking-[0.2em] text-[#6B6B6B] hover:text-[#080808]">Все →</Link>
             </div>
             <div className="divide-y divide-[rgba(8,8,8,0.08)]">
@@ -227,9 +232,9 @@ export default function Home() {
       </section>
 
       {/* NEWS */}
-      <section className="max-w-[1400px] mx-auto px-6 md:px-10 py-24">
-        <div className="flex items-baseline justify-between mb-10">
-          <h2 className="font-serif-display text-4xl">Новости</h2>
+      <section className="relative z-10 bg-[#FDFCF8] max-w-[1400px] mx-auto px-5 sm:px-6 md:px-10 py-16 sm:py-24">
+        <div className="flex items-baseline justify-between gap-4 mb-10">
+          <h2 className="font-serif-display text-3xl sm:text-4xl">Новости</h2>
           <Link to="/news" className="font-ui text-[11px] uppercase tracking-[0.2em] text-[#6B6B6B] hover:text-[#080808]">Все →</Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">

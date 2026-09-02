@@ -25,13 +25,13 @@ const NAV = [
 
 export default function Footer() {
   return (
-    <footer className="ink-bg mt-32 relative z-10">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-10 md:py-16">
+    <footer className="ink-bg mt-16 sm:mt-24 md:mt-32 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-6 md:px-10 py-10 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-[0.8fr_1.4fr_0.8fr] divide-y md:divide-y-0 md:divide-x md:border-x border-[rgba(253,252,248,0.1)] divide-[rgba(253,252,248,0.1)]">
           {/* Brand + nav */}
-          <div className="pb-8 md:px-8 md:pb-0">
-            <div className="font-serif-display text-3xl tracking-tight">ШВАРЦ ЧÖРНЫЙ</div>
-            <p className="font-ui text-[12px] tracking-[0.15em] uppercase text-[#A9A9A9] mt-3 whitespace-normal lg:whitespace-nowrap">Источник гармонических вибраций</p>
+          <div className="pb-8 md:px-8 md:pb-0 min-w-0">
+            <div className="font-serif-display text-2xl sm:text-3xl tracking-tight">ШВАРЦ ЧÖРНЫЙ</div>
+            <p className="font-ui text-[11px] sm:text-[12px] tracking-[0.12em] sm:tracking-[0.15em] uppercase text-[#A9A9A9] mt-3 leading-relaxed">Источник гармонических вибраций</p>
             <ul className="mt-6 space-y-2 font-ui text-sm text-[#A9A9A9]">
               {NAV.map(([l, t]) => (
                 <li key={l}>{t ? <Link to={t} className="hover:text-[#FDFCF8] transition-colors">{l}</Link> : <span className="text-[#6B6B6B]">{l}</span>}</li>

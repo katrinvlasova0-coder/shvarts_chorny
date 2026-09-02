@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="ШВАРЦ ЧÖРНЫЙ">
-  <rect width="100" height="100" fill="#080808"/>
-  <text x="50" y="68" font-family="Georgia, 'Times New Roman', serif" font-size="56" fill="#FDFCF8" text-anchor="middle">Ш</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ШВАРЦ ЧÖРНЫЙ">
+  <rect width="64" height="64" fill="#080808"/>
+  <circle cx="32" cy="32" r="23" fill="none" stroke="#C5A059" stroke-width="2.25"/>
+  <rect x="29.5" y="18" width="5" height="28" rx="2.5" fill="#C5A059"/>
 </svg>

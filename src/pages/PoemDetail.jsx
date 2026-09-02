@@ -114,14 +114,14 @@ export default function PoemDetail() {
 
               {/* Poem text + reading player beside it */}
               <div className="lg:grid lg:grid-cols-[1fr_auto] lg:gap-10 lg:items-start">
-                <article className="font-serif-display text-[#FDFCF8] text-xl md:text-2xl leading-[1.7] whitespace-pre-wrap"
-                  style={{ textShadow: '0 1px 12px rgba(0,0,0,0.6)' }}>
-                  {poem.text}
-                </article>
-                <div className="mt-6 lg:mt-1 lg:sticky lg:top-28 lg:justify-self-end flex flex-col items-end gap-6">
+                <div className="mb-8 lg:mb-0 lg:order-2 lg:sticky lg:top-28 lg:justify-self-end flex flex-col items-start lg:items-end gap-4 sm:gap-6">
                   <ReadingPlayer src={poem.audioReading} title={poem.title} compact />
                   {poem.coverImage && <CoverThumbnail src={poem.coverImage} alt={poem.title} />}
                 </div>
+                <article className="font-serif-display text-[#FDFCF8] text-lg sm:text-xl md:text-2xl leading-[1.7] whitespace-pre-wrap break-words min-w-0 lg:order-1"
+                  style={{ textShadow: '0 1px 12px rgba(0,0,0,0.6)' }}>
+                  {poem.text}
+                </article>
               </div>
 
               {/* Footer of poem */}
