@@ -9,6 +9,8 @@ import CoverThumbnail from '@/components/CoverThumbnail';
 import { ChevronLeft, ChevronRight, Shuffle, ArrowLeft, Heart, BookOpen } from 'lucide-react';
 import { isFavorite, toggleFavorite } from '@/lib/favorites';
 
+const HIDDEN_TEXT_SLUGS = ['ne-ne-ne-to-ne', 'beshenye-psy', 'menya-voshishchaet-messendzher-maks'];
+
 export default function PoemDetail() {
   const { categorySlug, poemSlug } = useParams();
   const navigate = useNavigate();
@@ -120,7 +122,9 @@ export default function PoemDetail() {
                 </div>
                 <article className="font-serif-display text-[#FDFCF8] text-lg sm:text-xl md:text-2xl leading-[1.7] whitespace-pre-wrap break-words min-w-0 lg:order-1"
                   style={{ textShadow: '0 1px 12px rgba(0,0,0,0.6)' }}>
-                  {poem.text}
+                  {HIDDEN_TEXT_SLUGS.includes(poem.slug) ? (
+                    <span className="italic text-[#FDFCF8]/70">Текст скрыт цензурой.</span>
+                  ) : poem.text}
                 </article>
               </div>
 
