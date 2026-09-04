@@ -165,6 +165,15 @@
 
 ::selection { background: var(--ink); color: var(--paper); }
 
+/* Nav link pulse: white ↔ gold for visibility on light backgrounds */
+@keyframes navPulse {
+  0%, 100% { color: #FDFCF8; }
+  50% { color: #C5A059; }
+}
+.nav-pulse {
+  animation: navPulse 3s ease-in-out infinite;
+}
+
 /* Gold shimmer sweep on hover */
 .gold-shimmer { position: relative; overflow: hidden; }
 .gold-shimmer::after {

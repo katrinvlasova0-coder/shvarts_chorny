@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import SEO from '@/components/SEO';
-import PoemCard from '@/components/PoemCard';
 import AtmosphereBackground from '@/components/AtmosphereBackground';
 import { ChevronLeft } from 'lucide-react';
 
@@ -10,7 +9,6 @@ export default function PoetryCategory() {
   const { categorySlug } = useParams();
   const [cat, setCat] = useState(null);
   const [poems, setPoems] = useState([]);
-  const [sort, setSort] = useState('order');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,15 +22,6 @@ export default function PoetryCategory() {
       } catch {} finally { setLoading(false); }
     })();
   }, [categorySlug]);
-
-  const sorted = useMemo(() => {
-    const arr = [...poems];
-    if (sort === 'order') arr.sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
-    else if (sort === 'newest') arr.sort((a, b) => (b.creationYear || 0) - (a.creationYear || 0));
-    else if (sort === 'oldest') arr.sort((a, b) => (a.creationYear || 0) - (b.creationYear || 0));
-    else if (sort === 'title') arr.sort((a, b) => (a.title || '').localeCompare(b.title || '', 'ru'));
-    return arr;
-  }, [poems, sort]);
 
   const animType = cat?.animationType || (categorySlug === 'purga' ? 'snow' : 'none');
 
@@ -55,22 +44,8 @@ export default function PoetryCategory() {
               <h1 className="font-serif-display text-5xl md:text-8xl text-[#FDFCF8] leading-none">{cat?.name || categorySlug}</h1>
               {cat?.description && <p className="font-serif-display text-xl italic text-[#FDFCF8]/70 mt-6 max-w-2xl">{cat.description}</p>}
 
-              <div className="mt-16 flex items-center justify-between border-b border-[#FDFCF8]/20 pb-4">
-                <span className="font-ui text-[11px] uppercase tracking-[0.2em] text-[#FDFCF8]/60">{sorted.length} произведений</span>
-                <div className="flex items-center gap-3">
-                  <span className="font-ui text-[10px] uppercase tracking-[0.2em] text-[#FDFCF8]/40">Сортировка:</span>
-                  <select value={sort} onChange={(e) => setSort(e.target.value)}
-                    className="bg-transparent font-ui text-[11px] uppercase tracking-[0.15em] text-[#FDFCF8] border-b border-[#FDFCF8]/30 focus:outline-none focus:border-[#FDFCF8]">
-                    <option value="order" className="bg-[#080808]">Порядок архива</option>
-                    <option value="newest" className="bg-[#080808]">Сначала новые</option>
-                    <option value="oldest" className="bg-[#080808]">Сначала старые</option>
-                    <option value="title" className="bg-[#080808]">По названию</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="mt-4">
-                {sorted.map((p, i) => (
+              <div className="mt-16">
+                {poems.map((p, i) => (
                   <div key={p.id} className="border-b border-[#FDFCF8]/15">
                     <Link to={`/poetry/${categorySlug}/${p.slug}`} className="group block py-6 transition-all duration-500 hover:pl-4">
                       <div className="flex items-baseline justify-between gap-4">
@@ -88,7 +63,7 @@ export default function PoetryCategory() {
                     </Link>
                   </div>
                 ))}
-                {!sorted.length && <p className="font-serif-display italic text-[#FDFCF8]/50 py-10">В этой категории пока нет произведений.</p>}
+                {!poems.length && <p className="font-serif-display italic text-[#FDFCF8]/50 py-10">В этой категории пока нет произведений.</p>}
               </div>
             </>
           )}

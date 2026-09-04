@@ -4,7 +4,7 @@ import { Menu, X, Search as SearchIcon } from 'lucide-react';
 import SoundToggle from '@/components/SoundToggle';
 
 const NAV = [
-  { label: 'Стихи', to: '/poetry' },
+  { label: 'Поэзия', to: '/poetry' },
   { label: 'Музыка', to: '/music' },
   { label: 'Биография', to: '/biography' },
   { label: 'Новости', to: '/news' },
@@ -45,7 +45,7 @@ export default function Navbar() {
   }, [open]);
 
   const brandCls = onDarkHero ? 'text-[#FDFCF8]' : 'text-[#080808]';
-  const linkIdle = onDarkHero ? 'text-[#FDFCF8]/70 hover:text-[#FDFCF8]' : 'text-[#6B6B6B] hover:text-[#080808]';
+  const linkIdle = onDarkHero ? 'nav-pulse hover:text-[#C5A059]' : 'text-[#6B6B6B] hover:text-[#080808]';
   const linkActive = onDarkHero ? 'text-[#FDFCF8]' : 'text-[#080808]';
   const iconCls = onDarkHero ? 'text-[#FDFCF8]' : 'text-[#080808]';
 

@@ -38,11 +38,11 @@ export default function BackgroundSlideshow({ interval = 5200, opacity = 0.9, va
       <div className="absolute inset-0 bg-[#080808]" />
       <div className="absolute inset-0" style={{ opacity }}>
         <div key={`prev-${pair.prev}`} className="absolute inset-0 bg-fade-out">
-          <Image src={IMAGES[pair.prev]} alt="" fittingType="fill"
+          <Image src={IMAGES[pair.prev]} alt="" fittingType="fill" quality={60}
             className="h-full w-full object-cover grayscale contrast-125" />
         </div>
         <div key={`cur-${pair.cur}`} className="absolute inset-0 bg-reveal-down">
-          <Image src={IMAGES[pair.cur]} alt="" fittingType="fill"
+          <Image src={IMAGES[pair.cur]} alt="" fittingType="fill" quality={60}
             className="h-full w-full object-cover grayscale contrast-125" />
         </div>
         {/* Preload only the next image in the rotation */}

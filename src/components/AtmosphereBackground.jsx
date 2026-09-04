@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { Image } from '@/components/ui/image';
 
 // Atmospheric animated backgrounds: snow, ink, smoke, none.
 // Respects prefers-reduced-motion via CSS.
@@ -20,7 +21,9 @@ export default function AtmosphereBackground({ type = 'none', image, overlay = 0
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
       {bg && (
-        <img src={bg} alt="" className="absolute inset-0 h-full w-full object-cover"
+        <Image src={bg} alt="" fittingType="fill" quality={70}
+          loading="eager" fetchpriority="high"
+          className="absolute inset-0 h-full w-full object-cover"
           style={{ filter: 'grayscale(1) contrast(1.05)', animation: type === 'ink' ? 'inkDrift 18s ease-in-out infinite' : undefined }} />
       )}
       <div className="absolute inset-0" style={{ background: `rgba(8,8,8,${overlay})` }} />
